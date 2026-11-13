@@ -1113,6 +1113,11 @@ MonoBehaviour:
   globalLight: {fileID: 2058381910}
   realWorldColor: {r: 1, g: 1, b: 1, a: 1}
   spiritWorldColor: {r: 0.45, g: 0.6, b: 1, a: 1}
+  playerCollider: {fileID: 717339035}
+  solidLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  overlapShrink: 0.9
 --- !u!4 &466688965
 Transform:
   m_ObjectHideFlags: 0
