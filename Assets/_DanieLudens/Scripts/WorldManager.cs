@@ -1,7 +1,8 @@
-using System;                           // For Action
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;          // New Input System
-using UnityEngine.Rendering.Universal;  // For Light2D
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public enum World { Real, Spirit } // The two possible worlds
 
@@ -9,14 +10,21 @@ public class WorldManager : MonoBehaviour
 {
     public static WorldManager Instance { get; private set; } // Singleton access
     public static event Action<World> OnWorldChanged;        // Fired when the world changes
+    public static event Action OnSwitchBlocked;              // Fired when a switch is not allowed
 
     [SerializeField] private Light2D globalLight;                                  // Scene global light
     [SerializeField] private Color realWorldColor = Color.white;                   // Light color in Real world
     [SerializeField] private Color spiritWorldColor = new Color(0.45f, 0.6f, 1f); // Light color in Spirit world
 
+    [Header("Switch Check")]
+    [SerializeField] private Collider2D playerCollider;  // Player body used to check overlaps
+    [SerializeField] private LayerMask solidLayers;      // Layers that can block a switch
+    [SerializeField] private float overlapShrink = 0.9f; // Smaller box so touching the floor doesn't count
+
     public World CurrentWorld { get; private set; } = World.Real; // Active world, starts in Real
 
-    private InputAction switchAction; // "SwitchWorld" input action
+    private InputAction switchAction;                                       // "SwitchWorld" input action
+    private readonly List<WorldObject> appearing = new List<WorldObject>(); // Objects that would appear on switch
 
     // Set up the singleton and input action
     void Awake()
@@ -26,8 +34,8 @@ public class WorldManager : MonoBehaviour
             Destroy(gameObject); // Remove the duplicate
             return;
         }
-        Instance = this;                                                // Register as the instance
-        switchAction = InputSystem.actions.FindAction("SwitchWorld");  // Find the SwitchWorld action
+        Instance = this;                                               // Register as the instance
+        switchAction = InputSystem.actions.FindAction("SwitchWorld"); // Find the SwitchWorld action
     }
 
     // Apply the starting world
@@ -41,15 +49,55 @@ public class WorldManager : MonoBehaviour
     {
         if (switchAction.WasPressedThisFrame()) // Switch pressed this frame
         {
-            SwitchWorld(); // Toggle the world
+            SwitchWorld(); // Try to toggle the world
         }
     }
 
-    // Toggle between Real and Spirit worlds
+    // Switch to the other world if the player is not inside something solid there
     public void SwitchWorld()
     {
-        CurrentWorld = CurrentWorld == World.Real ? World.Spirit : World.Real; // Flip the world
-        ApplyWorld();                                                          // Update visuals and notify
+        World target = CurrentWorld == World.Real ? World.Spirit : World.Real; // The world we want to enter
+
+        if (IsBlocked(target)) // Something solid would appear on the player
+        {
+            Debug.Log("World switch blocked: something solid is in the way"); // Temporary feedback for testing
+            OnSwitchBlocked?.Invoke();                                         // Let other systems react (sound, shake)
+            return;
+        }
+
+        CurrentWorld = target; // Enter the new world
+        ApplyWorld();          // Update visuals and notify
+    }
+
+    // Check if the player would overlap a solid object that only exists in the target world
+    private bool IsBlocked(World target)
+    {
+        if (playerCollider == null) return false; // No player assigned, allow the switch
+
+        appearing.Clear(); // Reuse the list
+        foreach (var wo in WorldObject.All)
+        {
+            if (wo.ExistsIn(target) && !wo.ExistsIn(CurrentWorld)) appearing.Add(wo); // Only objects that would appear
+        }
+
+        foreach (var wo in appearing) wo.SetCollidersEnabled(true); // Turn them on just for the check
+
+        Bounds b = playerCollider.bounds;                                                                 // Player box in world space
+        Collider2D[] hits = Physics2D.OverlapBoxAll(b.center, b.size * overlapShrink, 0f, solidLayers); // Colliders inside the player box
+
+        bool blocked = false; // Assume the switch is allowed
+        foreach (var hit in hits)
+        {
+            WorldObject owner = hit.GetComponentInParent<WorldObject>(); // WorldObject that owns this collider
+            if (owner != null && appearing.Contains(owner))              // It is one of the appearing objects
+            {
+                blocked = true; // The player would be stuck
+                break;
+            }
+        }
+
+        foreach (var wo in appearing) wo.SetCollidersEnabled(false); // Turn them back off
+        return blocked;
     }
 
     // Update the light and notify listeners
