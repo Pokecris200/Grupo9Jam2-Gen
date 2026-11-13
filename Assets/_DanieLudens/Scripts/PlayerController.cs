@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 6f; // Horizontal speed
 
     [Header("Jump")]
-    [SerializeField] private float jumpForce = 12f;          // Upward jump velocity
+    [SerializeField] private float jumpHeight = 3.7f;        // Jump height in tiles
     [SerializeField] private Transform groundCheck;          // Point under the feet
     [SerializeField] private float groundCheckRadius = 0.1f; // Ground detection radius
     [SerializeField] private LayerMask groundLayer;          // What counts as ground
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
         if (jumpBufferTimer > 0f && coyoteTimer > 0f) // Jump pressed recently and grounded recently
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // Set upward velocity
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, GetJumpVelocity()); // Velocity needed to reach jumpHeight
             jumpBufferTimer = 0f; // Use up the buffer
             coyoteTimer = 0f;     // Use up coyote time
         }
@@ -81,12 +81,22 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, -maxFallSpeed); // Clamp fall speed
         }
     }
+    // Calculate the upward velocity needed to reach jumpHeight
+    private float GetJumpVelocity()
+    {
+        float gravity = Mathf.Abs(Physics2D.gravity.y) * baseGravityScale; // Real gravity on the player
+        return Mathf.Sqrt(2f * gravity * jumpHeight);                      // v = sqrt(2 * g * h)
+    }
 
-    // Draw the ground check circle in the editor
+    // Draw the ground check circle and the max jump height in the editor
     void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;                                 // Nothing to draw
-        Gizmos.color = Color.yellow;                                     // Gizmo color
+        Gizmos.color = Color.yellow;                                     // Ground check color
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius); // Show detection area
+
+        Gizmos.color = Color.cyan;                                                // Jump height color
+        Vector3 top = groundCheck.position + Vector3.up * jumpHeight;             // Highest point of the jump
+        Gizmos.DrawLine(top + Vector3.left * 0.5f, top + Vector3.right * 0.5f);  // Show max jump height
     }
 }
