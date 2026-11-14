@@ -18,6 +18,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.1f;          // Jump time after leaving a ledge
     [SerializeField] private float jumpBufferTime = 0.1f;      // Jump time before landing
 
+    [Header("Escape")]
+    [SerializeField] private float escapeSpeedMultiplier = 1.5f; // Faster movement during the escape
+    [SerializeField] private Animator animator;                  // Optional: speeds up the walk animation too
+
+    private float speedMultiplier = 1f; // Current speed boost (1 = normal)
     private Rigidbody2D rb;          // Physics body
     private InputAction moveAction;  // "Move" input action
     private InputAction jumpAction;  // "Jump" input action
@@ -34,6 +39,18 @@ public class PlayerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move"); // Find the Move action
         jumpAction = InputSystem.actions.FindAction("Jump"); // Find the Jump action
         baseGravityScale = rb.gravityScale;                  // Save the original gravity
+    }
+
+    // Listen for the escape phase
+    void OnEnable()
+    {
+        EscapeSequence.OnEscapeStarted += HandleEscape; // Run faster when the escape starts
+    }
+
+    // Stop listening when disabled
+    void OnDisable()
+    {
+        EscapeSequence.OnEscapeStarted -= HandleEscape; // Avoid calls on a disabled object
     }
 
     // Read input and update the jump buffer every frame
@@ -65,8 +82,8 @@ public class PlayerController : MonoBehaviour
             coyoteTimer -= Time.fixedDeltaTime; // Count coyote time down
         }
 
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y); // Move on X, keep Y
-
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed * speedMultiplier, rb.linearVelocity.y); // Move on X, keep Y
+        
         if (jumpBufferTimer > 0f && coyoteTimer > 0f) // Jump pressed recently and grounded recently
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, GetJumpVelocity()); // Velocity needed to reach jumpHeight
@@ -81,6 +98,14 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, -maxFallSpeed); // Clamp fall speed
         }
     }
+
+    // Boost movement and animation speed for the escape
+    private void HandleEscape()
+    {
+        speedMultiplier = escapeSpeedMultiplier;                     // Move faster
+        if (animator != null) animator.speed = escapeSpeedMultiplier; // Animate faster
+    }
+
     // Calculate the upward velocity needed to reach jumpHeight
     private float GetJumpVelocity()
     {
