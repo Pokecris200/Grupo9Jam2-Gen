@@ -1,0 +1,40 @@
+{
+  "tileSize": 128,
+  "padding": 4,
+  "extrude": 2,
+  "columns": 8,
+  "rows": 3,
+  "tiles": [
+    {"index":0,"col":0,"row":0,"name":"zarza_corta","set":"zarza","mask":-1},
+    {"index":4,"col":4,"row":0,"name":"puente_luz_corta","set":"puente_luz","mask":-1},
+    {"index":8,"col":0,"row":1,"name":"huella_piedra_luz_corta","set":"huella_piedra_luz","mask":-1},
+    {"index":12,"col":4,"row":1,"name":"huella_puente_luz_corta","set":"huella_puente_luz","mask":-1},
+    {"index":16,"col":0,"row":2,"name":"fantasma_zarza_corta","set":"fantasma_zarza","mask":-1},
+    {"index":1,"col":1,"row":0,"name":"zarza_inicio","set":"zarza","mask":-1},
+    {"index":5,"col":5,"row":0,"name":"puente_luz_inicio","set":"puente_luz","mask":-1},
+    {"index":9,"col":1,"row":1,"name":"huella_piedra_luz_inicio","set":"huella_piedra_luz","mask":-1},
+    {"index":13,"col":5,"row":1,"name":"huella_puente_luz_inicio","set":"huella_puente_luz","mask":-1},
+    {"index":17,"col":1,"row":2,"name":"fantasma_zarza_inicio","set":"fantasma_zarza","mask":-1},
+    {"index":2,"col":2,"row":0,"name":"zarza_medio","set":"zarza","mask":-1},
+    {"index":6,"col":6,"row":0,"name":"puente_luz_medio","set":"puente_luz","mask":-1},
+    {"index":10,"col":2,"row":1,"name":"huella_piedra_luz_medio","set":"huella_piedra_luz","mask":-1},
+    {"index":14,"col":6,"row":1,"name":"huella_puente_luz_medio","set":"huella_puente_luz","mask":-1},
+    {"index":18,"col":2,"row":2,"name":"fantasma_zarza_medio","set":"fantasma_zarza","mask":-1},
+    {"index":3,"col":3,"row":0,"name":"zarza_fin","set":"zarza","mask":-1},
+    {"index":7,"col":7,"row":0,"name":"puente_luz_fin","set":"puente_luz","mask":-1},
+    {"index":11,"col":3,"row":1,"name":"huella_piedra_luz_fin","set":"huella_piedra_luz","mask":-1},
+    {"index":15,"col":7,"row":1,"name":"huella_puente_luz_fin","set":"huella_puente_luz","mask":-1},
+    {"index":19,"col":3,"row":2,"name":"fantasma_zarza_fin","set":"fantasma_zarza","mask":-1},
+    {"index":20,"col":4,"row":2,"name":"fantasma_columna_capitel","set":"fantasma_columna","mask":-1},
+    {"index":21,"col":5,"row":2,"name":"fantasma_columna_fuste","set":"fantasma_columna","mask":-1},
+    {"index":22,"col":6,"row":2,"name":"fantasma_columna_base","set":"fantasma_columna","mask":-1},
+    {"index":23,"col":7,"row":2,"name":"fantasma_columna_rota","set":"fantasma_columna","mask":-1}
+  ],
+  "sets": [
+    {"name":"zarza","kind":"row","collider":"Grid","fullVariants":[],"single":"zarza_corta","start":"zarza_inicio","mid":"zarza_medio","end":"zarza_fin"},
+    {"name":"puente_luz","kind":"row","collider":"Grid","fullVariants":[],"single":"puente_luz_corta","start":"puente_luz_inicio","mid":"puente_luz_medio","end":"puente_luz_fin"},
+    {"name":"huella_piedra_luz","kind":"row","collider":"None","fullVariants":[],"single":"huella_piedra_luz_corta","start":"huella_piedra_luz_inicio","mid":"huella_piedra_luz_medio","end":"huella_piedra_luz_fin"},
+    {"name":"huella_puente_luz","kind":"row","collider":"None","fullVariants":[],"single":"huella_puente_luz_corta","start":"huella_puente_luz_inicio","mid":"huella_puente_luz_medio","end":"huella_puente_luz_fin"},
+    {"name":"fantasma_zarza","kind":"row","collider":"None","fullVariants":[],"single":"fantasma_zarza_corta","start":"fantasma_zarza_inicio","mid":"fantasma_zarza_medio","end":"fantasma_zarza_fin"}
+  ]
+}
