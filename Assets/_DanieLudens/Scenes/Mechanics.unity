@@ -3841,6 +3841,7 @@ GameObject:
   - component: {fileID: 1038192310}
   - component: {fileID: 1038192309}
   - component: {fileID: 1038192308}
+  - component: {fileID: 1038192311}
   m_Layer: 0
   m_Name: Altar
   m_TagString: Untagged
@@ -3904,6 +3905,35 @@ Transform:
   - {fileID: 1126254309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1038192311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038192307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0474f6f6331ee4890344f82666d9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostWords
+  wordPrefab: {fileID: 5393613041982278206, guid: 326cbc9eacac52340ada654f789a9113, type: 3}
+  words:
+  - huye
+  - corre
+  - vete
+  - "s\xE1lvate"
+  evilWord: "qu\xE9dese"
+  wordColor: {r: 0.39337844, g: 0.6930177, b: 0.9811321, a: 1}
+  evilColor: {r: 0.9, g: 0.1, b: 0.1, a: 1}
+  evilChance: 0.223
+  spawnInterval: {x: 0.35, y: 0.65}
+  spawnWidth: 0.4
+  spawnHeight: 0.8
+  riseSpeed: 0.7
+  lifetime: 1.16
+  swayAmount: 0.26
+  maxAlpha: 0.85
 --- !u!1 &1057097019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3933,7 +3963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2ab101d01ca984f9ef09740f311000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MohanMeter
-  fillTime: 5
+  fillTime: 50
   escapeFillTime: 15
   value: 0
   isFilling: 0
