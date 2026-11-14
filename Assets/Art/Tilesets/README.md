@@ -20,7 +20,7 @@ Assets/Art/Tilesets/
 ├─ plataformas/  plataformas.png + .json  → RuleTiles/piedra, madera, rama, liana
 ├─ ruinas/       ruinas.png + .json       → RuleTiles/muro  (+ columnas, bloques, escalones, arco, puerta)
 ├─ decoracion/   decoracion.png + .json   → RuleTiles/raiz   (+ decoración sin colisión)
-└─ fondos/       fondo_1_selva_lejana.png, fondo_2_ruinas.png, fondo_3_follaje_cercano.png
+└─ fondos/       kit de parallax: exterior/ (capas 0–3), cueva/ (capas 0–3), comun/capa_4_niebla.png
 Assets/Editor/TilesetImporter.cs           (configuración automática al importar)
 ```
 
@@ -86,14 +86,27 @@ Las columnas se arman apiladas: capitel o columna rota arriba, fuste las veces q
 | 9 | `musgo_borde_izq` | en la celda vacía a la **izquierda** de una cornisa |
 | 10–13 | `raiz_suelta`, `raiz_arriba`, `raiz_medio`, `raiz_abajo` | raíces colgantes (Rule Tile de columna) |
 
-### fondos/ (parallax, repetibles en horizontal)
-Cada capa mide 1024×1080 px, que a PPU 128 es una pantalla de 1080p de alto. Se repiten sin costura en X (`Wrap Mode U = Repeat`).
+### fondos/: kit de parallax para todos los escenarios
+Todas las capas cumplen las mismas reglas, así que se pueden usar y mezclar en cualquier nivel:
+- **Tamaño único:** 1024×1080 px. A PPU 128 son 8 × 8,4 unidades, una pantalla de 1080p de alto.
+- **Repetición horizontal sin costura** (`Wrap Mode U = Repeat`): el borde izquierdo continúa en el derecho.
+- **Horizonte común en y = 944 px** desde arriba. Ahí apoyan su base las ruinas y la maleza de todas las capas.
+- **Una velocidad fija por profundidad** (multiplica el movimiento de la cámara):
 
-| Archivo | Capa | Sugerencia de velocidad |
-|---|---|---|
-| `fondo_1_selva_lejana.png` | selva lejana con neblina (opaca) | 0.1–0.2 × cámara |
-| `fondo_2_ruinas.png` | ruinas a media distancia: templo, columnas, arco (transparente) | 0.3–0.5 × cámara |
-| `fondo_3_follaje_cercano.png` | troncos, copas y lianas cercanas (transparente, la capa más oscura) | 0.6–0.8 × cámara |
+| Profundidad | exterior/ | cueva/ | Tipo | Velocidad |
+|---|---|---|---|---|
+| capa_0 | `capa_0_cielo` | `capa_0_roca_fondo` | opaca | 0.05 (casi fija) |
+| capa_1 | `capa_1_selva_lejana` | `capa_1_cueva_lejana` | transparente | 0.2 |
+| capa_2 | `capa_2_ruinas` | `capa_2_ruinas_cueva` | transparente | 0.45 |
+| capa_3 | `capa_3_follaje_cercano` | `capa_3_estalactitas` | transparente, la más oscura | 0.75 |
+| (nivel) | tiles | tiles | | 1.0 |
+| capa_4 | `comun/capa_4_niebla` | `comun/capa_4_niebla` | delante del nivel, opacidad 35–60 % | 1.2 |
+
+**Cómo usarlo en cada escenario:** elige un ambiente completo (exterior o cueva) o mezcla capas. Por ejemplo, en la entrada de una cueva puedes usar `capa_0_cielo` + `capa_2_ruinas_cueva`. Agrega la niebla en las zonas húmedas.
+
+**Para crear un ambiente nuevo:** respeta las mismas 5 profundidades, el tamaño, el horizonte, las velocidades y los tonos oscuros de la paleta. Solo cambian las siluetas.
+
+**Montaje en Unity (sin código de arte):** cada capa es un SpriteRenderer con *Draw Mode = Tiled* y un ancho de unas 3 pantallas (24 unidades), en su propio Sorting Layer, ordenado de capa_0 (atrás) a capa_4 (delante). El script de parallax lo hace programación: solo mueve cada capa según su velocidad. La página "Fondos (parallax)" del archivo FigCraft muestra las dos composiciones y la pila de capas.
 
 ## Rule Tiles que se generan
 | Rule Tile | Tipo | Vecinos | Collider |
