@@ -71,9 +71,13 @@ public class PlayerController : MonoBehaviour
     // Apply movement, jump and gravity with physics
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); // Check ground under feet
+        Collider2D groundHit = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); // What is under the feet
+        isGrounded = groundHit != null;                                                                       // Touching the ground?
 
-        if (isGrounded && rb.linearVelocity.y <= 0.01f) // On the ground and not rising
+        MovingPlatform platform = groundHit != null ? groundHit.GetComponentInParent<MovingPlatform>() : null; // Moving platform under the feet
+        Vector2 platformVelocity = platform != null ? platform.Velocity : Vector2.zero;                       // Its velocity (zero if none)
+
+        if (isGrounded && rb.linearVelocity.y - platformVelocity.y <= 0.01f) // On the ground and not rising (relative to the platform)
         {
             coyoteTimer = coyoteTime; // Refill coyote time
         }
@@ -82,13 +86,17 @@ public class PlayerController : MonoBehaviour
             coyoteTimer -= Time.fixedDeltaTime; // Count coyote time down
         }
 
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed * speedMultiplier, rb.linearVelocity.y); // Move on X, keep Y
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed * speedMultiplier + platformVelocity.x, rb.linearVelocity.y); // Move on X and ride the platform
 
         if (jumpBufferTimer > 0f && coyoteTimer > 0f) // Jump pressed recently and grounded recently
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, GetJumpVelocity()); // Velocity needed to reach jumpHeight
             jumpBufferTimer = 0f; // Use up the buffer
             coyoteTimer = 0f;     // Use up coyote time
+        }
+        else if (platform != null && platformVelocity.y < 0f) // Riding a platform that goes down
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, platformVelocity.y); // Stick to it instead of bouncing
         }
 
         rb.gravityScale = rb.linearVelocity.y < 0f ? baseGravityScale * fallGravityMultiplier : baseGravityScale; // Heavier when falling
