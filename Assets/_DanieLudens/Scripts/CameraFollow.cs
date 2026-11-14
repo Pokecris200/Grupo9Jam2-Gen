@@ -4,14 +4,21 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform target;                       // What the camera follows (found by tag if empty)
-    [SerializeField] private Vector2 offset = new Vector2(0f, 2.6f); // Camera position relative to the ground the player stands on
+    [SerializeField] private Vector2 offset = new Vector2(0f, 1f);   // Camera position relative to the ground the player stands on
     [SerializeField] private float smoothTime = 0.15f;               // Seconds to catch up (lower = tighter)
     [SerializeField] private float lookAhead = 1.5f;                 // Extra distance shown in the walking direction
     [SerializeField] private float lookAheadSpeed = 3f;              // How fast the look-ahead changes side
 
     [Header("Vertical")]
-    [SerializeField] private float fallFollowDistance = 2f; // Follow down if the player falls this far below the last ground
-    [SerializeField] private float upFollowDistance = 4f;   // Follow up if the player goes this far above the last ground
+    [SerializeField] private float fallFollowDistance = 1.5f; // Follow down if the player falls this far below the last ground
+    [SerializeField] private float upFollowDistance = 4f;     // Follow up if the player goes this far above the last ground
+
+    [Header("Shake")]
+    [SerializeField] private float rumbleMax = 0.12f;      // Strongest shake during the delivery rumble
+    [SerializeField] private float rumbleRampTime = 3f;    // Seconds to reach the strongest rumble (match the tension delay)
+    [SerializeField] private float burstStrength = 0.35f;  // Strong shake when the escape starts or the player is caught
+    [SerializeField] private float burstDuration = 0.5f;   // Seconds for a burst to calm down
+    [SerializeField] private float shakeFrequency = 25f;   // How fast the camera shakes
 
     [Header("Level Bounds")]
     [SerializeField] private bool useBounds = false;                         // Keep the camera inside the level
@@ -20,9 +27,28 @@ public class CameraFollow : MonoBehaviour
 
     private PlayerController player; // To know when the player is on the ground
     private Vector3 velocity;        // Used by SmoothDamp
+    private Vector3 smoothPosition;  // Camera position without the shake
     private float currentLook;       // Current look-ahead distance
     private float lastTargetX;       // Target X on the last frame
     private float groundY;           // Height the camera uses as reference
+    private float shakeStrength;     // Current shake size
+    private bool rumbling;           // True during the delivery rumble
+
+    // Listen for the delivery, the escape and the game over
+    void OnEnable()
+    {
+        Altar.OnChichasDelivered += StartRumble; // Earth starts shaking
+        EscapeSequence.OnEscapeStarted += Burst; // The Mohán arrives
+        MohanMeter.OnMohanCaught += Burst;       // The Mohán catches the player
+    }
+
+    // Stop listening when disabled
+    void OnDisable()
+    {
+        Altar.OnChichasDelivered -= StartRumble; // Avoid calls on a disabled object
+        EscapeSequence.OnEscapeStarted -= Burst; // Avoid calls on a disabled object
+        MohanMeter.OnMohanCaught -= Burst;       // Avoid calls on a disabled object
+    }
 
     // Find the player and start on it
     void Start()
@@ -37,10 +63,11 @@ public class CameraFollow : MonoBehaviour
         player = target.GetComponent<PlayerController>(); // Get the controller
         lastTargetX = target.position.x;                  // Remember the start X
         groundY = target.position.y;                      // Start at the player's height
-        transform.position = DesiredPosition();           // Start on the player without sliding in
+        smoothPosition = DesiredPosition();               // Start on the player without sliding in
+        transform.position = smoothPosition;              // Apply it
     }
 
-    // Follow the target after it has moved
+    // Follow the target and add the shake
     void LateUpdate()
     {
         if (target == null) return; // Nothing to follow
@@ -54,7 +81,35 @@ public class CameraFollow : MonoBehaviour
             currentLook = Mathf.MoveTowards(currentLook, Mathf.Sign(moveX) * lookAhead, lookAheadSpeed * Time.deltaTime); // Look where it walks
         }
 
-        transform.position = Vector3.SmoothDamp(transform.position, DesiredPosition(), ref velocity, smoothTime); // Glide toward the goal
+        smoothPosition = Vector3.SmoothDamp(smoothPosition, DesiredPosition(), ref velocity, smoothTime); // Glide toward the goal
+        transform.position = smoothPosition + ShakeOffset();                                              // Add the shake on top
+    }
+
+    // Start the slow rumble after the delivery
+    private void StartRumble()
+    {
+        rumbling = true; // Shake grows over time
+    }
+
+    // Strong shake that calms down
+    private void Burst()
+    {
+        rumbling = false;               // The rumble ends
+        shakeStrength = burstStrength;  // Jump to a strong shake
+    }
+
+    // Calculate this frame's shake
+    private Vector3 ShakeOffset()
+    {
+        if (rumbling) shakeStrength = Mathf.MoveTowards(shakeStrength, rumbleMax, rumbleMax / rumbleRampTime * Time.deltaTime); // Grow slowly
+        else shakeStrength = Mathf.MoveTowards(shakeStrength, 0f, burstStrength / burstDuration * Time.deltaTime);             // Calm down
+
+        if (shakeStrength <= 0f) return Vector3.zero; // No shake
+
+        float t = Time.time * shakeFrequency;                   // Time scaled by frequency
+        float x = (Mathf.PerlinNoise(t, 0f) - 0.5f) * 2f;       // Smooth random X (-1 to 1)
+        float y = (Mathf.PerlinNoise(0f, t + 10f) - 0.5f) * 2f; // Smooth random Y (-1 to 1)
+        return new Vector3(x, y, 0f) * shakeStrength;           // Scale by the current strength
     }
 
     // Change the reference height only when it makes sense
