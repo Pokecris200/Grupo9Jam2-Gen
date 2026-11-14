@@ -56,6 +56,9 @@ TagManager:
   - name: Niebla
     uniqueID: 692994965
     locked: 0
+  - name: Primer_Plano
+    uniqueID: 151635765
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
