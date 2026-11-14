@@ -2219,6 +2219,11 @@ MonoBehaviour:
   peekDistance: 150
   audioSource: {fileID: 585227900}
   appearSound: {fileID: 8300000, guid: 414d2d30e041f414ca3358c09caacf5d, type: 3}
+  chaseMinPeek: 150
+  chaseMaxPeekRatio: 0.35
+  chaseMinAlpha: 0.35
+  chaseMaxScale: 1.8
+  chaseFadeIn: 1
   catchTime: 1.5
   noiseStrength: 80
   noiseSpeed: 3
@@ -3928,7 +3933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2ab101d01ca984f9ef09740f311000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MohanMeter
-  fillTime: 50
+  fillTime: 5
   escapeFillTime: 15
   value: 0
   isFilling: 0
