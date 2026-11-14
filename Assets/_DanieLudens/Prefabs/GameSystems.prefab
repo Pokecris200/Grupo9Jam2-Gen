@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2ab101d01ca984f9ef09740f311000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MohanMeter
-  fillTime: 50
+  fillTime: 20
   escapeFillTime: 15
   value: 0
   isFilling: 0
