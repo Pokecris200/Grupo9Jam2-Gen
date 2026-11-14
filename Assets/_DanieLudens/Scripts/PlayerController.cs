@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.linearVelocity = new Vector2(moveInput * moveSpeed * speedMultiplier, rb.linearVelocity.y); // Move on X, keep Y
-        
+
         if (jumpBufferTimer > 0f && coyoteTimer > 0f) // Jump pressed recently and grounded recently
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, GetJumpVelocity()); // Velocity needed to reach jumpHeight
