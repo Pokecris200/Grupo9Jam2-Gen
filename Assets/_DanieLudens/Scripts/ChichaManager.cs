@@ -25,7 +25,6 @@ public class ChichaManager : MonoBehaviour
     void Start()
     {
         Total = FindObjectsByType<Chicha>(FindObjectsSortMode.None).Length; // Every active chicha in the scene
-        PlayerThoughts.Instance.Say("Debo encontrar las chichas del Mohán"); // Temporary test line
     }
 
     // Register a pickup and notify listeners
