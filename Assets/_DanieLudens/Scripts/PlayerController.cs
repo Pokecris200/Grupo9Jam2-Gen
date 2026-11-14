@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float escapeSpeedMultiplier = 1.5f; // Faster movement during the escape
     [SerializeField] private Animator animator;                  // Optional: speeds up the walk animation too
 
+    public bool IsGrounded => isGrounded; // Read access for the camera
     private float speedMultiplier = 1f; // Current speed boost (1 = normal)
     private Rigidbody2D rb;          // Physics body
     private InputAction moveAction;  // "Move" input action
