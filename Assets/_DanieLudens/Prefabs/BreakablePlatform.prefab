@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1374848965334155554}
   - component: {fileID: 4196309884387503760}
   m_Layer: 6
-  m_Name: BeakablePlatform
+  m_Name: BreakablePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
