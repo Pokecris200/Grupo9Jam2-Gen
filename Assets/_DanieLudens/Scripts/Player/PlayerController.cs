@@ -18,6 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.1f;          // Jump time after leaving a ledge
     [SerializeField] private float jumpBufferTime = 0.1f;      // Jump time before landing
 
+    [Header("Escape")]
+    [SerializeField] private float escapeSpeedMultiplier = 1.5f; // Faster movement during the escape
+    [SerializeField] private Animator animator;                  // Optional: speeds up the walk animation too
+
+    public bool IsGrounded => isGrounded; // Read access for the camera
+    private float speedMultiplier = 1f; // Current speed boost (1 = normal)
     private Rigidbody2D rb;          // Physics body
     private InputAction moveAction;  // "Move" input action
     private InputAction jumpAction;  // "Jump" input action
@@ -34,6 +40,18 @@ public class PlayerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move"); // Find the Move action
         jumpAction = InputSystem.actions.FindAction("Jump"); // Find the Jump action
         baseGravityScale = rb.gravityScale;                  // Save the original gravity
+    }
+
+    // Listen for the escape phase
+    void OnEnable()
+    {
+        EscapeSequence.OnEscapeStarted += HandleEscape; // Run faster when the escape starts
+    }
+
+    // Stop listening when disabled
+    void OnDisable()
+    {
+        EscapeSequence.OnEscapeStarted -= HandleEscape; // Avoid calls on a disabled object
     }
 
     // Read input and update the jump buffer every frame
@@ -54,9 +72,13 @@ public class PlayerController : MonoBehaviour
     // Apply movement, jump and gravity with physics
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); // Check ground under feet
+        Collider2D groundHit = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); // What is under the feet
+        isGrounded = groundHit != null;                                                                       // Touching the ground?
 
-        if (isGrounded && rb.linearVelocity.y <= 0.01f) // On the ground and not rising
+        MovingPlatform platform = groundHit != null ? groundHit.GetComponentInParent<MovingPlatform>() : null; // Moving platform under the feet
+        Vector2 platformVelocity = platform != null ? platform.Velocity : Vector2.zero;                       // Its velocity (zero if none)
+
+        if (isGrounded && rb.linearVelocity.y - platformVelocity.y <= 0.01f) // On the ground and not rising (relative to the platform)
         {
             coyoteTimer = coyoteTime; // Refill coyote time
         }
@@ -65,13 +87,17 @@ public class PlayerController : MonoBehaviour
             coyoteTimer -= Time.fixedDeltaTime; // Count coyote time down
         }
 
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y); // Move on X, keep Y
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed * speedMultiplier + platformVelocity.x, rb.linearVelocity.y); // Move on X and ride the platform
 
         if (jumpBufferTimer > 0f && coyoteTimer > 0f) // Jump pressed recently and grounded recently
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, GetJumpVelocity()); // Velocity needed to reach jumpHeight
             jumpBufferTimer = 0f; // Use up the buffer
             coyoteTimer = 0f;     // Use up coyote time
+        }
+        else if (platform != null && platformVelocity.y < 0f) // Riding a platform that goes down
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, platformVelocity.y); // Stick to it instead of bouncing
         }
 
         rb.gravityScale = rb.linearVelocity.y < 0f ? baseGravityScale * fallGravityMultiplier : baseGravityScale; // Heavier when falling
@@ -81,6 +107,14 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, -maxFallSpeed); // Clamp fall speed
         }
     }
+
+    // Boost movement and animation speed for the escape
+    private void HandleEscape()
+    {
+        speedMultiplier = escapeSpeedMultiplier;                     // Move faster
+        if (animator != null) animator.speed = escapeSpeedMultiplier; // Animate faster
+    }
+
     // Calculate the upward velocity needed to reach jumpHeight
     private float GetJumpVelocity()
     {

@@ -32,16 +32,16 @@ public class MohanMeter : MonoBehaviour
         Instance = this; // Register as the instance
     }
 
-    // Listen for the moment all chichas are collected
+    // Listen for the start of the escape phase
     void OnEnable()
     {
-        ChichaManager.OnAllChichasCollected += StartEscape; // Escape phase trigger
+        EscapeSequence.OnEscapeStarted += StartEscape; // Escape starts after the altar delivery
     }
 
     // Stop listening when disabled
     void OnDisable()
     {
-        ChichaManager.OnAllChichasCollected -= StartEscape; // Avoid calls on a disabled object
+        EscapeSequence.OnEscapeStarted -= StartEscape; // Avoid calls on a disabled object
     }
 
     // Fill the meter in the spirit world, or always during the escape phase

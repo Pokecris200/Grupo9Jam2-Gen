@@ -38,8 +38,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fondo_0
+    uniqueID: 1842430486
+    locked: 0
+  - name: Fondo_1
+    uniqueID: 2051187542
+    locked: 0
+  - name: Fondo_2
+    uniqueID: 1694195581
+    locked: 0
+  - name: Fondo_3
+    uniqueID: 210614490
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Niebla
+    uniqueID: 692994965
+    locked: 0
+  - name: Primer_Plano
+    uniqueID: 151635765
     locked: 0
   m_RenderingLayers:
   - Default
