@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
+  m_Script: {fileID: 11500000, guid: 6de7a1f398a74445a369777f5bea11f4, type: 3}
   m_Name: muro
-  m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.RuleTile
+  m_EditorClassIdentifier: Assembly-CSharp::RuleTileHermanos
   m_DefaultSprite: {fileID: 497745356, guid: df6f4a2f1b07a2c4d9c81709aa655d82, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 2
@@ -966,3 +966,6 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: -1, y: 1, z: 0}
     m_RuleTransform: 0
+  hermanos:
+  - {fileID: 11400000, guid: f79cfae4de95173418008b5de53ab04b, type: 2}
+  - {fileID: 11400000, guid: 0d65ca3048d6ecd47aeb1ba9373fe4ad, type: 2}
