@@ -36,6 +36,29 @@ public class WorldManager : MonoBehaviour
         }
         Instance = this;                                               // Register as the instance
         switchAction = InputSystem.actions.FindAction("SwitchWorld"); // Find the SwitchWorld action
+        FindMissingReferences(); // Fill empty references so the prefab works in any scene
+    }
+
+    // Find the light and the player by themselves if nothing was assigned
+    private void FindMissingReferences()
+    {
+        if (globalLight == null) // No light assigned in the Inspector
+        {
+            foreach (Light2D light in FindObjectsByType<Light2D>(FindObjectsSortMode.None)) // Every 2D light in the scene
+            {
+                if (light.lightType == Light2D.LightType.Global) // Only the global one
+                {
+                    globalLight = light; // Use it
+                    break;
+                }
+            }
+        }
+
+        if (playerCollider == null) // No player assigned in the Inspector
+        {
+            GameObject player = GameObject.FindWithTag("Player");                  // Find the player by tag
+            if (player != null) playerCollider = player.GetComponent<Collider2D>(); // Use its body
+        }
     }
 
     // Apply the starting world
@@ -103,7 +126,7 @@ public class WorldManager : MonoBehaviour
     // Update the light and notify listeners
     private void ApplyWorld()
     {
-        globalLight.color = CurrentWorld == World.Real ? realWorldColor : spiritWorldColor; // Pick light color
+        if (globalLight != null) globalLight.color = CurrentWorld == World.Real ? realWorldColor : spiritWorldColor; // Pick light color
         OnWorldChanged?.Invoke(CurrentWorld);                                               // Tell subscribers
     }
 
