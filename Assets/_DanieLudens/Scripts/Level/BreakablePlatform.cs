@@ -1,5 +1,6 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class BreakablePlatform : MonoBehaviour
@@ -10,6 +11,7 @@ public class BreakablePlatform : MonoBehaviour
     [SerializeField] private Color crackColor = new Color(1f, 0.5f, 0.5f); // Tint while cracking
 
     private SpriteRenderer sr;     // Platform sprite
+    private Tilemap tilemap;       // Platform tilemap
     private BoxCollider2D box;     // Platform collider
     private Vector3 startPosition; // Original position
     private Color startColor;      // Original color
@@ -18,10 +20,11 @@ public class BreakablePlatform : MonoBehaviour
     // Cache components and the original state
     void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();  // Get the sprite
+        sr = GetComponent<SpriteRenderer>();  // Get the sprite platform
+        tilemap = GetComponent<Tilemap>();     // Get the tilemap platform
         box = GetComponent<BoxCollider2D>();  // Get the collider
         startPosition = transform.position;   // Remember where it belongs
-        startColor = sr.color;                // Remember its color
+        startColor = GetColor();                // Remember its color
     }
 
     // Start cracking when the player lands on top
@@ -42,12 +45,12 @@ public class BreakablePlatform : MonoBehaviour
         {
             float k = t / breakDelay;                                                                  // Progress from 0 to 1
             transform.position = startPosition + (Vector3)(Random.insideUnitCircle * shakeAmount * k); // Shake harder over time
-            sr.color = Color.Lerp(startColor, crackColor, k);                                          // Turn red
+            SetColor(Color.Lerp(startColor, crackColor, k));                                           // Turn red
             yield return null;                                                                         // Next frame
         }
 
         transform.position = startPosition; // Back in place for the respawn
-        sr.color = startColor;              // Original color for the respawn
+        SetColor(startColor);               // Original color for the respawn
 
         if (WorldManager.Instance != null) WorldManager.Instance.StartCoroutine(RespawnRoutine()); // Timer runs on an object that stays active
         gameObject.SetActive(false); // Break: disappears completely
@@ -72,5 +75,20 @@ public class BreakablePlatform : MonoBehaviour
             if (hit.CompareTag("Player")) return true; // The player is there
         }
         return false; // Free space
+    }
+    
+    // Read the platform color (sprite or tiles)
+    private Color GetColor()
+    {
+        if (sr != null) return sr.color;           // Sprite platform
+        if (tilemap != null) return tilemap.color; // Tilemap platform
+        return Color.white;                        // Nothing to tint
+    }
+
+    // Tint the platform (sprite or tiles)
+    private void SetColor(Color color)
+    {
+        if (sr != null) sr.color = color;           // Sprite platform
+        if (tilemap != null) tilemap.color = color; // Tilemap platform
     }
 }
