@@ -1712,6 +1712,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Altar
       objectReference: {fileID: 0}
+    - target: {fileID: 6880242726550213450, guid: 309be662f30b3e34d9c51c70380c4ac3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2508475910755896271, guid: e90a7eea9fc21724eb9672740391769f, type: 2}
+    - target: {fileID: 9075159728935401228, guid: 309be662f30b3e34d9c51c70380c4ac3, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1781,6 +1789,14 @@ PrefabInstance:
     - target: {fileID: 5085038193516645671, guid: 37e42a9f263599f47978329bbe4700ad, type: 3}
       propertyPath: m_Name
       value: GameSystems
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824839538258025385, guid: 37e42a9f263599f47978329bbe4700ad, type: 3}
+      propertyPath: fillTime
+      value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824839538258025385, guid: 37e42a9f263599f47978329bbe4700ad, type: 3}
+      propertyPath: escapeFillTime
+      value: 150000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -199,8 +199,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sample text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e90a7eea9fc21724eb9672740391769f, type: 2}
+  m_sharedMaterial: {fileID: 2508475910755896271, guid: e90a7eea9fc21724eb9672740391769f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -334,8 +334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023f7fe1ed0f2ea4b9873ebb3297cf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Altar
-  showCountDistance: 4
-  deliverDistance: 1
+  showCountDistance: 5.5
+  deliverDistance: 2.8
   altarRenderer: {fileID: 2108691405249598403}
   deliveredSprite: {fileID: 0}
   aura: {fileID: 6190904793667200080}
@@ -371,7 +371,7 @@ MonoBehaviour:
   evilChance: 0.223
   spawnInterval: {x: 0.35, y: 0.65}
   spawnWidth: 0.4
-  spawnHeight: 0.8
+  spawnHeight: 2.6
   riseSpeed: 0.7
   lifetime: 1.16
   swayAmount: 0.26
@@ -481,6 +481,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlowPulse
   speed: 2
-  minAlpha: 0.25
-  maxAlpha: 0.7
+  minAlpha: 0.01
+  maxAlpha: 0.11
   scaleAmount: 0.15
