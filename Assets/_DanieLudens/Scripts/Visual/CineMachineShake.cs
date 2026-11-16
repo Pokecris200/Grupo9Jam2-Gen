@@ -1,7 +1,7 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class CinemachineShake : CinemachineExtension
+public class CineMachineShake : CinemachineExtension
 {
     [SerializeField] private float rumbleMax = 0.12f;     // Strongest shake during the delivery rumble
     [SerializeField] private float rumbleRampTime = 3f;   // Seconds to reach the strongest rumble (match the tension delay)
