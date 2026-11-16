@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject optionsPanel;
     public bool isGameActive;
     private static GameManager Instance;
 
@@ -25,13 +27,24 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void StartGame()
+    public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
 
-    private void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }
+    public void OpenOptions()
+    {
+        menuPanel.SetActive(false);
+        optionsPanel.SetActive(true);
+    }
+    public void CloseOptions()
+    {
+        optionsPanel.SetActive(false);
+        menuPanel.SetActive(true);
+    }
 }
+
