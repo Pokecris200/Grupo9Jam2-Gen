@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Terrenal
+  - Espiritual
   layers:
   - Default
   - TransparentFX
@@ -38,8 +40,50 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fondo_0
+    uniqueID: 1842430486
+    locked: 0
+  - name: Fondo_1
+    uniqueID: 2051187542
+    locked: 0
+  - name: Fondo_2
+    uniqueID: 1694195581
+    locked: 0
+  - name: Fondo_3
+    uniqueID: 210614490
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Fondo_Parallax
+    uniqueID: 788593415
+    locked: 0
+  - name: Fondo_Nivel
+    uniqueID: 1928215527
+    locked: 0
+  - name: Agua
+    uniqueID: 463061025
+    locked: 0
+  - name: Terreno
+    uniqueID: 1389286805
+    locked: 0
+  - name: Decoracion_Atras
+    uniqueID: 1896047267
+    locked: 0
+  - name: Objetos
+    uniqueID: 589471433
+    locked: 0
+  - name: Personaje
+    uniqueID: 1664479103
+    locked: 0
+  - name: Decoracion_Frente
+    uniqueID: 1990226897
+    locked: 0
+  - name: Primer_Plano
+    uniqueID: 1966382995
+    locked: 0
+  - name: UI
+    uniqueID: 1056677901
     locked: 0
   m_RenderingLayers:
   - Default
