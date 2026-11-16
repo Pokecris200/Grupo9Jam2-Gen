@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldWave
   frontShader: {fileID: 4800000, guid: 98ed1f1e826f5ee40ad9bfa5fdb21c55, type: 3}
-  duration: 0.4
+  duration: 1.5
   pixelSize: 0.03125
   sortingLayer: Primer_Plano
   sortingOrder: 100
@@ -205,7 +205,7 @@ MonoBehaviour:
   - {fileID: 923423459, guid: 44c96c6f0601f8442be615d19c9feeb5, type: 3}
   - {fileID: 1522882397, guid: 44c96c6f0601f8442be615d19c9feeb5, type: 3}
   - {fileID: -1859923271, guid: 44c96c6f0601f8442be615d19c9feeb5, type: 3}
-  amuletFps: 15
+  amuletFps: 6.7
   raisedArmPose: {fileID: -1404565570, guid: 4b67d298123521d4584b83842b8833e4, type: 3}
 --- !u!1 &1805754793850227773
 GameObject:
@@ -303,6 +303,7 @@ MonoBehaviour:
   globalLight: {fileID: 5037271942289648772}
   realWorldColor: {r: 1, g: 1, b: 1, a: 1}
   spiritWorldColor: {r: 0.45, g: 0.6, b: 1, a: 1}
+  switchDelay: 0.35
   playerCollider: {fileID: 0}
   solidLayers:
     serializedVersion: 2

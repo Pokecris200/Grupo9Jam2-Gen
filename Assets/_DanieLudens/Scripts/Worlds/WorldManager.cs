@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +9,7 @@ public enum World { Real, Spirit } // The two possible worlds
 
 public class WorldManager : MonoBehaviour
 {
+    public static event Action OnSwitchStarted;              // Fired when the player raises the amulet
     public static WorldManager Instance { get; private set; } // Singleton access
     public static event Action<World> OnWorldChanged;        // Fired when the world changes
     public static event Action OnSwitchBlocked;              // Fired when a switch is not allowed
@@ -15,6 +17,9 @@ public class WorldManager : MonoBehaviour
     [SerializeField] private Light2D globalLight;                                  // Scene global light
     [SerializeField] private Color realWorldColor = Color.white;                   // Light color in Real world
     [SerializeField] private Color spiritWorldColor = new Color(0.45f, 0.6f, 1f); // Light color in Spirit world
+    [SerializeField] private float switchDelay = 0.35f; // Seconds raising the amulet before the world changes
+
+    private bool switching; // True while the amulet is raised
 
     [Header("Switch Check")]
     [SerializeField] private Collider2D playerCollider;  // Player body used to check overlaps
@@ -70,10 +75,20 @@ public class WorldManager : MonoBehaviour
     // Listen for the switch input every frame
     void Update()
     {
-        if (switchAction.WasPressedThisFrame()) // Switch pressed this frame
+        if (switchAction.WasPressedThisFrame() && !switching) // Pressed and not already switching
         {
-            SwitchWorld(); // Try to toggle the world
+            StartCoroutine(SwitchRoutine()); // Raise the amulet, then switch
         }
+    }
+
+    // Raise the amulet, wait, then try to switch
+    private IEnumerator SwitchRoutine()
+    {
+        switching = true;                             // Ignore new presses meanwhile
+        OnSwitchStarted?.Invoke();                    // The amulet goes up
+        yield return new WaitForSeconds(switchDelay); // Build up the moment
+        if (enabled) SwitchWorld();                   // Switch now (unless the game ended meanwhile)
+        switching = false;                            // Ready for the next one
     }
 
     // Switch to the other world if the player is not inside something solid there
