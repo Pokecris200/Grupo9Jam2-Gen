@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc31e5469981e04fab0fb04e88bf03f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldObject
-  presence: 0
+  presence: 2
 --- !u!114 &4053880648126071614
 MonoBehaviour:
   m_ObjectHideFlags: 0
