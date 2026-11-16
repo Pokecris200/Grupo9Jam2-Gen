@@ -46,5 +46,20 @@ public class GameManager : MonoBehaviour
         optionsPanel.SetActive(false);
         menuPanel.SetActive(true);
     }
-}
+        // 1. Agrega esta variable junto a donde tienes declarado optionsPanel:
+    public GameObject creditsPanel;
+
+    // 2. Agrega estas dos funciones públicas dentro de la clase:
+    public void OpenCredits()
+    {
+        menuPanel.SetActive(false);
+        creditsPanel.SetActive(true);
+    }
+
+    public void CloseCredits()
+    {
+        creditsPanel.SetActive(false);
+        menuPanel.SetActive(true);
+    }
+    }
 
