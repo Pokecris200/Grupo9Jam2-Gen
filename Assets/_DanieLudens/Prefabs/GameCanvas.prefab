@@ -250,7 +250,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_SizeDelta: {x: 180, y: 258}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1056357992439018135
 CanvasRenderer:
@@ -273,16 +273,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8301887, g: 0.043075833, b: 0.043075833, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8867fd590f06ba840ad1fe7198a233eb, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -981,7 +981,6 @@ MonoBehaviour:
   gameOverPanel: {fileID: 75973035523652181}
   tipText: {fileID: 270117717320292360}
   delayBeforePanel: 1.5
-  mainMenuScene: Mechanics
   tips:
   - No dejes que la barra se llene por completo...
   - El mundo espiritual guarda lo que buscas, pero no te quedes demasiado.
