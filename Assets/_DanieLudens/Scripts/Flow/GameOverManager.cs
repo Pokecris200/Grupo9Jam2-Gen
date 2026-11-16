@@ -8,7 +8,6 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;       // Panel with the buttons
     [SerializeField] private TextMeshProUGUI tipText;        // Random tip shown on the panel
     [SerializeField] private float delayBeforePanel = 1.5f;  // Time for the Mohán to show up before the panel
-    [SerializeField] private string mainMenuScene = "Interfaz-Juan"; // Main menu scene name
     [SerializeField] private string[] tips =
     {
         "No dejes que la barra se llene por completo...",
@@ -68,6 +67,6 @@ public class GameOverManager : MonoBehaviour
     // Go back to the main menu (button)
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene(mainMenuScene); // Load the menu scene
+        SceneManager.LoadScene(0); // Load the menu scene
     }
 }

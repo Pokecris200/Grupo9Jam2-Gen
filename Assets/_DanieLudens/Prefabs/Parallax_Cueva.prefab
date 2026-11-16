@@ -107,6 +107,7 @@ MonoBehaviour:
   scrollSpeed: 0.45
   followCameraY: 1
   yOffset: 0
+  repeat: 1
 --- !u!1 &2872852019399892719
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +215,7 @@ MonoBehaviour:
   scrollSpeed: 0.2
   followCameraY: 1
   yOffset: 0
+  repeat: 1
 --- !u!1 &3967022844074049632
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,9 +294,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 692994965
-  m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingLayerID: 210614490
+  m_SortingLayer: -1
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 9de3fb9661e53174191da53a3b8120b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.45}
@@ -321,6 +323,7 @@ MonoBehaviour:
   scrollSpeed: 1.2
   followCameraY: 1
   yOffset: 0
+  repeat: 1
 --- !u!1 &5413784146984458627
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +431,7 @@ MonoBehaviour:
   scrollSpeed: 0.75
   followCameraY: 1
   yOffset: 0
+  repeat: 1
 --- !u!1 &6034954216407041029
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,3 +575,4 @@ MonoBehaviour:
   scrollSpeed: 0.05
   followCameraY: 1
   yOffset: 0
+  repeat: 1

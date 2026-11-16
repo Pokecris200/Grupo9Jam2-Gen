@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     [Header("Escape")]
     [SerializeField] private float escapeSpeedMultiplier = 1.5f; // Faster movement during the escape
     [SerializeField] private Animator animator;                  // Optional: speeds up the walk animation too
+    [SerializeField] private SpriteRenderer spriteRenderer;      // Character art (flipped to face the walking direction)
+
+    private static readonly int SpeedHash = Animator.StringToHash("Speed");         // Animator parameter IDs
+    private static readonly int GroundedHash = Animator.StringToHash("Grounded");
+    private static readonly int VelocityYHash = Animator.StringToHash("VelocityY");
 
     public bool IsGrounded => isGrounded; // Read access for the camera
     private float speedMultiplier = 1f; // Current speed boost (1 = normal)
@@ -52,6 +57,7 @@ public class PlayerController : MonoBehaviour
     void OnDisable()
     {
         EscapeSequence.OnEscapeStarted -= HandleEscape; // Avoid calls on a disabled object
+        if (animator != null) animator.SetFloat(SpeedHash, 0f); // Stop walking when the controller is turned off
     }
 
     // Read input and update the jump buffer every frame
@@ -67,6 +73,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpBufferTimer -= Time.deltaTime; // Count the buffer down
         }
+        UpdateVisuals(); // Face the walking direction and animate
     }
 
     // Apply movement, jump and gravity with physics
@@ -132,5 +139,20 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.cyan;                                                // Jump height color
         Vector3 top = groundCheck.position + Vector3.up * jumpHeight;             // Highest point of the jump
         Gizmos.DrawLine(top + Vector3.left * 0.5f, top + Vector3.right * 0.5f);  // Show max jump height
+    }
+
+    // Flip the art toward the walking direction and feed the animator
+    private void UpdateVisuals()
+    {
+        if (spriteRenderer != null)
+        {
+            if (moveInput > 0.01f) spriteRenderer.flipX = false;      // Face right
+            else if (moveInput < -0.01f) spriteRenderer.flipX = true; // Face left
+        }
+
+        if (animator == null) return;                            // No animations yet
+        animator.SetFloat(SpeedHash, Mathf.Abs(moveInput));      // Idle or walk
+        animator.SetBool(GroundedHash, isGrounded);              // On the ground or in the air
+        animator.SetFloat(VelocityYHash, rb.linearVelocity.y);   // Jumping up or falling
     }
 }
