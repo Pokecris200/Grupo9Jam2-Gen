@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 61500995}
   - component: {fileID: 61500998}
   - component: {fileID: 61500997}
+  - component: {fileID: 61500999}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -282,6 +283,23 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &61500999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61500994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348ea5ff86ce4684998c7e956237331b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CinemachineShake
+  rumbleMax: 0.12
+  rumbleRampTime: 3
+  burstStrength: 0.35
+  burstDuration: 0.5
+  shakeFrequency: 25
 --- !u!1 &67939794
 GameObject:
   m_ObjectHideFlags: 0
@@ -29250,7 +29268,7 @@ Tilemap:
       - {fileID: -844033268, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
       - {fileID: -139402253, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
       - {fileID: -1539648990, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 34, y: -3, z: 0}
@@ -29426,7 +29444,7 @@ Tilemap:
       - {fileID: 1347204771, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
       - {fileID: 58399450, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
       - {fileID: 1569508150, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 39, y: 8, z: 0}
@@ -29459,7 +29477,7 @@ Tilemap:
       - {fileID: 1347204771, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
       - {fileID: 58399450, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
       - {fileID: 1569508150, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 39, y: 11, z: 0}
