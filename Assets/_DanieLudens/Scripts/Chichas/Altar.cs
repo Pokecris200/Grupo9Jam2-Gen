@@ -12,6 +12,9 @@ public class Altar : MonoBehaviour
 
     [Header("Visuals")]
     [SerializeField] private SpriteRenderer altarRenderer; // Altar sprite
+    [SerializeField] private SpriteRenderer spiritRenderer; // Lit altar shown in the spirit world
+    [SerializeField] private SpriteRenderer[] glows;        // Breathing glow layers (real and spirit)
+    [SerializeField] private Sprite deliveredGlowSprite;    // Glow of the altar with chichas
     [SerializeField] private Sprite deliveredSprite;       // Altar with chichas around it
     [SerializeField] private GameObject aura;              // Glow shown when all chichas are collected
     [SerializeField] private TextMeshPro counterText;      // Counter above the altar (e.g. 2/5)
@@ -98,7 +101,12 @@ public class Altar : MonoBehaviour
     private void Deliver()
     {
         delivered = true;                                                       // Only once
-        if (deliveredSprite != null) altarRenderer.sprite = deliveredSprite;   // Altar with chichas
+        if (deliveredSprite != null) // Altar with chichas in both worlds
+        {
+            altarRenderer.sprite = deliveredSprite;                        // Real altar
+            if (spiritRenderer != null) spiritRenderer.sprite = deliveredSprite; // Spirit altar
+        }
+        if (deliveredGlowSprite != null) foreach (SpriteRenderer g in glows) g.sprite = deliveredGlowSprite; // Glow follows the new art
         if (aura != null) aura.SetActive(false);                                // Glow off
         if (counterText != null) counterText.gameObject.SetActive(false);       // Counter off
         Debug.Log("Chichas delivered at the altar");                            // Temporary feedback for testing
