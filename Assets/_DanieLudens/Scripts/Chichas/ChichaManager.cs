@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class ChichaManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class ChichaManager : MonoBehaviour
 
     [SerializeField] private AudioClip[] collectionSounds;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private TextMeshProUGUI chichaCounterUI; // UI text showing the chicha count
 
     // Set up the singleton
     void Awake()
@@ -35,6 +37,7 @@ public class ChichaManager : MonoBehaviour
     {
         Collected++;                                        // One more chicha
         audioSource.PlayOneShot(collectionSounds[UnityEngine.Random.Range(0, collectionSounds.Length)]); // Play a random sound
+        chichaCounterUI.text = Collected + "/" + Total; // Update the UI
         Debug.Log("Chicha collected: " + Collected + "/" + Total); // Temporary feedback for testing
         OnChichaCollected?.Invoke(Collected, Total);        // Tell the UI and other systems
 
