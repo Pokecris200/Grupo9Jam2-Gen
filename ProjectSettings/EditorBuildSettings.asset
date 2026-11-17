@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Cristian/Main Menu Cristian.unity
     guid: 149d652126c5f084991f6c6383f5d22a
   - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 70437750c069ad443be911cefd666fec
+  - enabled: 1
     path: Assets/Scenes/_Level_1.unity
     guid: 710051ebed8c47c429df08403c2ecdcb
+  - enabled: 1
+    path: Assets/Scenes/Final.unity
+    guid: d73fe9c859b435a4199b39155f852454
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
