@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private GameObject creditsPanel;
     public bool isGameActive;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(false);
         optionsPanel.SetActive(true);
     }
+    
 
     public void CloseOptions()
     {
@@ -58,5 +60,16 @@ public class GameManager : MonoBehaviour
     {
         creditsPanel.SetActive(false);
         menuPanel.SetActive(true);
+    }
+    public void closeControls()
+    {
+        controlsPanel.SetActive(false);
+        menuPanel.SetActive(true);
+    }
+
+    public void OpenControls()
+    {
+        menuPanel.SetActive(false);
+        controlsPanel.SetActive(true);
     }
 }
