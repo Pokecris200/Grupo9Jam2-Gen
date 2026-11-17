@@ -406,7 +406,15 @@ MonoBehaviour:
   minAlpha: 0.15
   peekDistance: 150
   audioSource: {fileID: 1337055076692989966}
-  appearSound: {fileID: 8300000, guid: 414d2d30e041f414ca3358c09caacf5d, type: 3}
+  appearSounds:
+  - {fileID: 8300000, guid: ae4f06e3342a6b44d8bdc8e04a9b0343, type: 3}
+  - {fileID: 8300000, guid: 508e933db7765d74abcc3954e2890043, type: 3}
+  - {fileID: 8300000, guid: 8b6bb2f12da409140b5d98afbec94288, type: 3}
+  - {fileID: 8300000, guid: 430dc2fe9dd87e64c84a9ef95ad15401, type: 3}
+  - {fileID: 8300000, guid: e296e0e707d71a34f87bbaa74b868299, type: 3}
+  - {fileID: 8300000, guid: 3f963092e8086804b99fe0a5948dd07b, type: 3}
+  - {fileID: 8300000, guid: 760ac5e37eae8104b92300fd08490220, type: 3}
+  - {fileID: 8300000, guid: 6ec20b0e124e0ee4b8fc1ca856a8e7be, type: 3}
   chaseMinPeek: 150
   chaseMaxPeekRatio: 0.35
   chaseMinAlpha: 0.35

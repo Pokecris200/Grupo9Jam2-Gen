@@ -425,7 +425,7 @@ MonoBehaviour:
   maxFallSpeed: 20
   coyoteTime: 0.1
   jumpBufferTime: 0.1
-  escapeSpeedMultiplier: 1.5
+  escapeSpeedMultiplier: 1
   animator: {fileID: 2604162778044744742}
   spriteRenderer: {fileID: 7397407684505525121}
 --- !u!114 &2627738264742117834
