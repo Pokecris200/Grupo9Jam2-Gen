@@ -1573,6 +1573,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSystems
       objectReference: {fileID: 0}
+    - target: {fileID: 6824839538258025385, guid: 37e42a9f263599f47978329bbe4700ad, type: 3}
+      propertyPath: fillTime
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824839538258025385, guid: 37e42a9f263599f47978329bbe4700ad, type: 3}
+      propertyPath: escapeFillTime
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1593,6 +1601,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: -148984158701310327, guid: 88e69caac56e431478a48cecadd39947, type: 2}
+    - target: {fileID: 3039816060309228151, guid: 80d961dce4307f84fb482ace683d4638, type: 3}
+      propertyPath: moveSpeed
+      value: 4.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039816060309228151, guid: 80d961dce4307f84fb482ace683d4638, type: 3}
+      propertyPath: jumpHeight
+      value: 3.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3643747151130989850, guid: 80d961dce4307f84fb482ace683d4638, type: 3}
       propertyPath: m_text
       value: 
@@ -3236,7 +3252,7 @@ Transform:
   m_GameObject: {fileID: 934607347}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.404215, y: -0.12914476, z: -10}
+  m_LocalPosition: {x: -2.3996363, y: -0.12914476, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29868,7 +29884,7 @@ Tilemap:
       - {fileID: -844033268, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
       - {fileID: -139402253, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
       - {fileID: -1539648990, guid: 0f90ca9a94d238b43a957c8971e18ca2, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 13, y: -3, z: 0}
