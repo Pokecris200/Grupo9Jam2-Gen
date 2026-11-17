@@ -86,7 +86,7 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;                                  // Unfreeze before leaving
         InputSystem.actions.FindActionMap("Player").Enable(); // Controls ready for the next scene
-        SceneManager.LoadScene(0);                            // Main menu is always scene 0
+        SceneManager.LoadScene("Main Menu Cristian");          // Main menu by name (the title screen is scene 0)
     }
 
     // The Mohán caught the player: Esc no longer opens the pause
