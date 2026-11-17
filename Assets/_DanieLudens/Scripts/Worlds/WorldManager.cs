@@ -13,6 +13,8 @@ public class WorldManager : MonoBehaviour
     public static WorldManager Instance { get; private set; } // Singleton access
     public static event Action<World> OnWorldChanged;        // Fired when the world changes
     public static event Action OnSwitchBlocked;              // Fired when a switch is not allowed
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip switchSound;
 
     [SerializeField] private Light2D globalLight;                                  // Scene global light
     [SerializeField] private Color realWorldColor = Color.white;                   // Light color in Real world
@@ -40,6 +42,7 @@ public class WorldManager : MonoBehaviour
             return;
         }
         Instance = this;                                               // Register as the instance
+        audioSource = GetComponent<AudioSource>();
         switchAction = InputSystem.actions.FindAction("SwitchWorld"); // Find the SwitchWorld action
         FindMissingReferences(); // Fill empty references so the prefab works in any scene
     }
@@ -102,7 +105,7 @@ public class WorldManager : MonoBehaviour
             OnSwitchBlocked?.Invoke();                                         // Let other systems react (sound, shake)
             return;
         }
-
+        audioSource.PlayOneShot(switchSound); // Play the switch sound
         CurrentWorld = target; // Enter the new world
         ApplyWorld();          // Update visuals and notify
     }
