@@ -12,7 +12,7 @@ public class MohanFace : MonoBehaviour
     [SerializeField] private float minAlpha = 0.15f;                   // Visibility with an empty meter
     [SerializeField] private float peekDistance = 150f;                // Pixels the face slides in from the edge
     [SerializeField] private AudioSource audioSource;                  // Plays the apparition sound
-    [SerializeField] private AudioClip appearSound;                    // Sound when the face shows up
+    [SerializeField] private AudioClip[] appearSounds;                    // Sound when the face shows up
 
     [Header("Chase")]
     [SerializeField] private float chaseMinPeek = 150f;       // Pixels inside the screen with an empty meter
@@ -97,7 +97,7 @@ public class MohanFace : MonoBehaviour
 
         float meter = MohanMeter.Instance != null ? MohanMeter.Instance.Value : 0f;            // Current meter
         float maxAlpha = Mathf.Lerp(minAlpha, 1f, meter);                                      // More visible with a fuller meter
-        if (audioSource != null && appearSound != null) audioSource.PlayOneShot(appearSound); // Apparition sound
+        if (audioSource != null && appearSounds != null && appearSounds.Length > 0) audioSource.PlayOneShot(appearSounds[UnityEngine.Random.Range(0, appearSounds.Length)]); // Apparition sound
 
         yield return Move(hidden, shown, 0f, maxAlpha, fadeTime); // Slide in and fade in
         yield return new WaitForSeconds(showTime);                 // Stay a moment
@@ -134,7 +134,7 @@ public class MohanFace : MonoBehaviour
         bool fromLeft = PortalIsToTheRight();                                                  // Come from behind the player
         float seed = Random.value * 100f;                                                      // Different noise each time
         float appear = 0f;                                                                     // Fade in progress (0 to 1)
-        if (audioSource != null && appearSound != null) audioSource.PlayOneShot(appearSound); // Chase starts
+        if (audioSource != null && appearSounds != null && appearSounds.Length > 0) audioSource.PlayOneShot(appearSounds[UnityEngine.Random.Range(0, appearSounds.Length)]); // Chase starts
 
         while (!caught) // Until game over
         {
@@ -184,7 +184,7 @@ public class MohanFace : MonoBehaviour
         float startScale = Mathf.Abs(rect.localScale.x);                       // Current size
         float startAlpha = image.color.a;                                      // Current visibility
         float seed = Random.value * 100f;                                      // Different noise each time
-        if (audioSource != null && appearSound != null) audioSource.PlayOneShot(appearSound); // Scream
+        if (audioSource != null && appearSounds != null && appearSounds.Length > 0) audioSource.PlayOneShot(appearSounds[UnityEngine.Random.Range(0, appearSounds.Length)]); // Scream
 
         for (float t = 0f; t < catchTime; t += Time.deltaTime) // Every frame until catchTime
         {

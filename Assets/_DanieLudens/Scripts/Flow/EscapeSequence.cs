@@ -52,6 +52,9 @@ public class EscapeSequence : MonoBehaviour
             yield return new WaitForSeconds(gap); // Wait before the next one
         }
 
+        audioSource.loop = true;
+        audioSource.Play();
+
         IsEscaping = true;         // Escape phase is on
         Debug.Log("Escape started!"); // Temporary feedback for testing
         OnEscapeStarted?.Invoke(); // Tell the meter, the player, the portal, the arrow...
