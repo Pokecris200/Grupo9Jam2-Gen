@@ -446,6 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6fd219d40243a4a8e307e54bd11440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldManager
+  switchSound: {fileID: 0}
   globalLight: {fileID: 5037271942289648772}
   realWorldColor: {r: 1, g: 1, b: 1, a: 1}
   spiritWorldColor: {r: 0.45, g: 0.6, b: 1, a: 1}
@@ -455,6 +456,66 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   overlapShrink: 0.9
+--- !u!1 &2879243804456938947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8614831361905717517}
+  - component: {fileID: 8697820841636118360}
+  m_Layer: 0
+  m_Name: DosMundos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8614831361905717517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879243804456938947}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7396721608518461334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8697820841636118360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879243804456938947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73da15dbce83585489cca717ba64582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CinematicPlayer
+  videoFile: Cinematicas/derrota_dos_mundos.mp4
+  playWhen: 2
+  delay: 1.5
+  volume: 1
+  pauseGameAudio: 1
+  canSkip: 1
+  skipAfter: 0.5
+  skipHint: 'Cualquier tecla: saltar'
+  loadingText: Cargando...
+  hintFont: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
+  hintSize: 24
+  nextScene: 
+  preloadNextScene: 0
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4051736709376030852
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +600,66 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &4997979279139430134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025451765766741754}
+  - component: {fileID: 8525760852866719617}
+  m_Layer: 0
+  m_Name: Tiple
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2025451765766741754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4997979279139430134}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7396721608518461334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8525760852866719617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4997979279139430134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73da15dbce83585489cca717ba64582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CinematicPlayer
+  videoFile: Cinematicas/derrota_tiple.mp4
+  playWhen: 2
+  delay: 1.5
+  volume: 1
+  pauseGameAudio: 1
+  canSkip: 1
+  skipAfter: 0.5
+  skipHint: 'Cualquier tecla: saltar'
+  loadingText: Cargando...
+  hintFont: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
+  hintSize: 24
+  nextScene: 
+  preloadNextScene: 0
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5085038193516645671
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +696,7 @@ Transform:
   - {fileID: 3879431388691766439}
   - {fileID: 1802316362907482612}
   - {fileID: 993040111187974133}
+  - {fileID: 7396721608518461334}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5354949503580752256
@@ -725,3 +847,239 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &5874645390953836174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7396721608518461334}
+  - component: {fileID: 7828417500571137849}
+  m_Layer: 0
+  m_Name: Derrotas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7396721608518461334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5874645390953836174}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8614831361905717517}
+  - {fileID: 1834032245797616021}
+  - {fileID: 4571902162707112629}
+  - {fileID: 7566240338288330004}
+  - {fileID: 2025451765766741754}
+  m_Father: {fileID: 2817995280410651614}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7828417500571137849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5874645390953836174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640e516b170113348a01dbe4a856950a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DefeatCinematicPicker
+  spiritWorldDefeat: {fileID: 8697820841636118360}
+  otherDefeats:
+  - {fileID: 986626012312783932}
+  - {fileID: 4055111636702455362}
+  - {fileID: 3861231271171372474}
+  - {fileID: 8525760852866719617}
+  useSpiritWorldRule: 1
+--- !u!1 &6642014228125255493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7566240338288330004}
+  - component: {fileID: 3861231271171372474}
+  m_Layer: 0
+  m_Name: SeConvierte
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7566240338288330004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642014228125255493}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7396721608518461334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3861231271171372474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642014228125255493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73da15dbce83585489cca717ba64582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CinematicPlayer
+  videoFile: Cinematicas/derrota_se_convierte.mp4
+  playWhen: 2
+  delay: 1.5
+  volume: 1
+  pauseGameAudio: 1
+  canSkip: 1
+  skipAfter: 0.5
+  skipHint: 'Cualquier tecla: saltar'
+  loadingText: Cargando...
+  hintFont: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
+  hintSize: 24
+  nextScene: 
+  preloadNextScene: 0
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &8504981664797459607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1834032245797616021}
+  - component: {fileID: 986626012312783932}
+  m_Layer: 0
+  m_Name: Hipnosis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1834032245797616021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8504981664797459607}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7396721608518461334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &986626012312783932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8504981664797459607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73da15dbce83585489cca717ba64582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CinematicPlayer
+  videoFile: Cinematicas/final_derrota.mp4
+  playWhen: 2
+  delay: 1.5
+  volume: 1
+  pauseGameAudio: 1
+  canSkip: 1
+  skipAfter: 0.5
+  skipHint: 'Cualquier tecla: saltar'
+  loadingText: Cargando...
+  hintFont: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
+  hintSize: 24
+  nextScene: 
+  preloadNextScene: 0
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &8768594548778511546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4571902162707112629}
+  - component: {fileID: 4055111636702455362}
+  m_Layer: 0
+  m_Name: Cueva
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4571902162707112629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8768594548778511546}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7396721608518461334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4055111636702455362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8768594548778511546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73da15dbce83585489cca717ba64582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CinematicPlayer
+  videoFile: Cinematicas/derrota_cueva.mp4
+  playWhen: 2
+  delay: 1.5
+  volume: 1
+  pauseGameAudio: 1
+  canSkip: 1
+  skipAfter: 0.5
+  skipHint: 'Cualquier tecla: saltar'
+  loadingText: Cargando...
+  hintFont: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
+  hintSize: 24
+  nextScene: 
+  preloadNextScene: 0
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
