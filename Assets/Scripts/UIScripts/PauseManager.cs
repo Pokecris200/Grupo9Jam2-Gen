@@ -7,6 +7,10 @@ public class PauseManager : MonoBehaviour
     public GameObject pausePanel;
     private bool isPaused = false;
 
+    [Header("Audio UI")]
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip clickSound;
+
     void Start()
     {
         Time.timeScale = 1f;
@@ -19,6 +23,14 @@ public class PauseManager : MonoBehaviour
         {
             if (isPaused) ResumeGame();
             else PauseGame();
+        }
+    }
+
+    public void PlayClickSound()
+    {
+        if (sfxSource != null && clickSound != null)
+        {
+            sfxSource.PlayOneShot(clickSound);
         }
     }
 

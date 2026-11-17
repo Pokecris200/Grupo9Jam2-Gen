@@ -5,26 +5,25 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject creditsPanel;
     public bool isGameActive;
-    private static GameManager Instance;
 
-    void Awake()
+    [Header("Audio UI")]
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip clickSound;
+
+    void Start()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(this.gameObject);
-        Instance = this;
         isGameActive = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Llama a esta función desde los botones
+    public void PlayClickSound()
     {
-        
+        if (sfxSource != null && clickSound != null)
+        {
+            sfxSource.PlayOneShot(clickSound);
+        }
     }
 
     public void StartGame()
@@ -36,20 +35,19 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
     public void OpenOptions()
     {
         menuPanel.SetActive(false);
         optionsPanel.SetActive(true);
     }
+
     public void CloseOptions()
     {
         optionsPanel.SetActive(false);
         menuPanel.SetActive(true);
     }
-        // 1. Agrega esta variable junto a donde tienes declarado optionsPanel:
-    public GameObject creditsPanel;
 
-    // 2. Agrega estas dos funciones públicas dentro de la clase:
     public void OpenCredits()
     {
         menuPanel.SetActive(false);
@@ -61,5 +59,4 @@ public class GameManager : MonoBehaviour
         creditsPanel.SetActive(false);
         menuPanel.SetActive(true);
     }
-    }
-
+}
