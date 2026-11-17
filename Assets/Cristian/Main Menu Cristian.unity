@@ -2236,7 +2236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PROJECT MANAGER & COPYWRITING
+  m_text: "L\xCDDER DE PROYECTO Y TEXTOS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
   m_sharedMaterial: {fileID: -148984158701310327, guid: 88e69caac56e431478a48cecadd39947, type: 2}
@@ -2593,7 +2593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: EXIT
+  m_text: SALIR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
   m_sharedMaterial: {fileID: -148984158701310327, guid: 88e69caac56e431478a48cecadd39947, type: 2}
@@ -3219,7 +3219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: OPTIONS
+  m_text: "CONFIGURACI\xD3N"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
   m_sharedMaterial: {fileID: -148984158701310327, guid: 88e69caac56e431478a48cecadd39947, type: 2}
@@ -5792,7 +5792,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "CR\xC9DITS"
+  m_text: "CR\xC9DITOS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
   m_sharedMaterial: {fileID: -148984158701310327, guid: 88e69caac56e431478a48cecadd39947, type: 2}
@@ -7041,7 +7041,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CREDITS
+  m_text: "CR\xC9DITOS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
   m_sharedMaterial: {fileID: -148984158701310327, guid: 88e69caac56e431478a48cecadd39947, type: 2}
@@ -7315,7 +7315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CONTROLS
+  m_text: CONTROLES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
   m_sharedMaterial: {fileID: -148984158701310327, guid: 88e69caac56e431478a48cecadd39947, type: 2}

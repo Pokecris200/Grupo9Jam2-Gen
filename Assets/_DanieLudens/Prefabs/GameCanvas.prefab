@@ -1082,6 +1082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 917376634114125679, guid: bb0ecfe9875e56d44b7d8c9e1153ff20, type: 3}
+      propertyPath: m_text
+      value: "Men\xFA Principal"
+      objectReference: {fileID: 0}
     - target: {fileID: 3243043955314216024, guid: bb0ecfe9875e56d44b7d8c9e1153ff20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
@@ -1109,6 +1113,10 @@ PrefabInstance:
     - target: {fileID: 3243043955314216024, guid: bb0ecfe9875e56d44b7d8c9e1153ff20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994644823449934588, guid: bb0ecfe9875e56d44b7d8c9e1153ff20, type: 3}
+      propertyPath: m_text
+      value: FIN DEL JUEGO
       objectReference: {fileID: 0}
     - target: {fileID: 4605523084840725326, guid: bb0ecfe9875e56d44b7d8c9e1153ff20, type: 3}
       propertyPath: m_Pivot.x
@@ -1511,6 +1519,14 @@ PrefabInstance:
     - target: {fileID: 2095694233922810256, guid: d64e879896c44d645a88448078a0102b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799662772384599953, guid: d64e879896c44d645a88448078a0102b, type: 3}
+      propertyPath: m_text
+      value: "Men\xFA Principal"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401881250525632450, guid: d64e879896c44d645a88448078a0102b, type: 3}
+      propertyPath: m_text
+      value: "CONFIGURACI\xD3N"
       objectReference: {fileID: 0}
     - target: {fileID: 4538167940795365050, guid: d64e879896c44d645a88448078a0102b, type: 3}
       propertyPath: m_Name
