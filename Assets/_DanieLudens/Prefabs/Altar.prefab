@@ -14800,7 +14800,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5028400800715141242, guid: 3a4d6d473147e5146a6f1ff0e76c6d2a, type: 2}
+  - {fileID: -148984158701310327, guid: 88e69caac56e431478a48cecadd39947, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14872,7 +14872,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontSize: 7
-  m_fontSizeBase: 3
+  m_fontSizeBase: 7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
