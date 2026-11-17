@@ -10,6 +10,9 @@ public class ChichaManager : MonoBehaviour
     public int Collected { get; private set; } // Chichas picked up so far
     public int Total { get; private set; }     // Chichas in the level
 
+    [SerializeField] private AudioClip[] collectionSounds;
+    [SerializeField] private AudioSource audioSource;
+
     // Set up the singleton
     void Awake()
     {
@@ -31,6 +34,7 @@ public class ChichaManager : MonoBehaviour
     public void Collect()
     {
         Collected++;                                        // One more chicha
+        audioSource.PlayOneShot(collectionSounds[UnityEngine.Random.Range(0, collectionSounds.Length)]); // Play a random sound
         Debug.Log("Chicha collected: " + Collected + "/" + Total); // Temporary feedback for testing
         OnChichaCollected?.Invoke(Collected, Total);        // Tell the UI and other systems
 
