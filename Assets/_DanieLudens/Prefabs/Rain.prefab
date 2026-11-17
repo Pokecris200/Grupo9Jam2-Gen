@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PixelRain
   rainMaterial: {fileID: 2100000, guid: dbe36ad10ffadbd429c452cb16f120f5, type: 2}
-  sortingLayer: Fondo_3
-  sortingOrder: 20
+  sortingLayer: Fondo_Parallax
+  sortingOrder: 10
   margin: 1
   spiritSpeed: 0.12
   spiritTint: {r: 0.7, g: 0.8, b: 1, a: 1}
