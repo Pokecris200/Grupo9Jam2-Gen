@@ -249,6 +249,8 @@ MonoBehaviour:
   skipAfter: 0.5
   skipHint: 'Cualquier tecla: saltar'
   loadingText: Cargando...
+  hintFont: {fileID: 11400000, guid: 88e69caac56e431478a48cecadd39947, type: 2}
+  hintSize: 24
   nextScene: Main Menu Cristian
   preloadNextScene: 1
   onFinished:

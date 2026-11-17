@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -22,6 +23,8 @@ public class CinematicPlayer : MonoBehaviour
     [SerializeField] private float skipAfter = 0.5f;                       // Seconds before skipping works (so the "Play" click doesn't skip it)
     [SerializeField] private string skipHint = "Cualquier tecla: saltar";  // Small text in a corner; empty = no text
     [SerializeField] private string loadingText = "Cargando...";           // Shown if the video ends before the next scene is loaded
+    [SerializeField] private TMP_FontAsset hintFont;                        // Game font (RuinaAncestral-Bold SDF); empty = TMP default
+    [SerializeField] private float hintSize = 24f;                          // Hint font size
 
     [Header("When it ends")]
     [SerializeField] private string nextScene = "";       // Scene to load by name; empty = stay in this scene
@@ -32,7 +35,7 @@ public class CinematicPlayer : MonoBehaviour
     private RenderTexture texture;     // Frame of the video
     private GameObject screen;         // Canvas that shows the texture over everything
     private RawImage videoImage;       // Where the frames are drawn
-    private Text hint;                 // "Skip" / "Loading" text
+    private TextMeshProUGUI hint;      // "Skip" / "Loading" text
     private AsyncOperation loading;    // Next scene loading in the background
     private bool started;              // Play() was called
     private bool finished;             // Already ended or skipped
@@ -198,12 +201,13 @@ public class CinematicPlayer : MonoBehaviour
 
         if (string.IsNullOrEmpty(skipHint) && string.IsNullOrEmpty(loadingText)) return; // No text needed
 
-        hint = new GameObject("Hint").AddComponent<Text>();                 // Small corner text
+        hint = new GameObject("Hint").AddComponent<TextMeshProUGUI>();      // Small corner text
         hint.transform.SetParent(screen.transform, false);                   // Inside the canvas
-        hint.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); // Built-in font
+        if (hintFont != null) hint.font = hintFont;                          // Game font
         hint.text = skipHint;                                                // "Skip" text
-        hint.fontSize = 22;                                                  // Small
-        hint.alignment = TextAnchor.LowerRight;                              // Bottom right corner
+        hint.fontSize = hintSize;                                            // Small
+        hint.alignment = TextAlignmentOptions.BottomRight;                   // Bottom right corner
+        hint.textWrappingMode = TextWrappingModes.NoWrap;                    // One line
         hint.color = new Color(0.91f, 0.89f, 0.81f, 0.6f);                   // Soft cream
         hint.raycastTarget = false;                                          // Doesn't block clicks
         hint.enabled = false;                                                // Hidden at first
