@@ -3,35 +3,60 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject creditsPanel;
     public bool isGameActive;
-    private static GameManager Instance;
 
-    void Awake()
+    [Header("Audio UI")]
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip clickSound;
+
+    void Start()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(this.gameObject);
-        Instance = this;
         isGameActive = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Llama a esta función desde los botones
+    public void PlayClickSound()
     {
-        
+        if (sfxSource != null && clickSound != null)
+        {
+            sfxSource.PlayOneShot(clickSound);
+        }
     }
 
-    private void StartGame()
+    public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
 
-    private void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void OpenOptions()
+    {
+        menuPanel.SetActive(false);
+        optionsPanel.SetActive(true);
+    }
+
+    public void CloseOptions()
+    {
+        optionsPanel.SetActive(false);
+        menuPanel.SetActive(true);
+    }
+
+    public void OpenCredits()
+    {
+        menuPanel.SetActive(false);
+        creditsPanel.SetActive(true);
+    }
+
+    public void CloseCredits()
+    {
+        creditsPanel.SetActive(false);
+        menuPanel.SetActive(true);
     }
 }
