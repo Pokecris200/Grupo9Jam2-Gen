@@ -1,0 +1,26 @@
+{
+  "tileSize": 128,
+  "padding": 4,
+  "extrude": 2,
+  "columns": 8,
+  "rows": 2,
+  "tiles": [
+    {"index":0,"col":0,"row":0,"name":"hojas","set":"decoracion","mask":-1},
+    {"index":1,"col":1,"row":0,"name":"helecho","set":"decoracion","mask":-1},
+    {"index":2,"col":2,"row":0,"name":"flores","set":"decoracion","mask":-1},
+    {"index":3,"col":3,"row":0,"name":"hierba_alta","set":"decoracion","mask":-1},
+    {"index":4,"col":4,"row":0,"name":"hongos","set":"decoracion","mask":-1},
+    {"index":5,"col":5,"row":0,"name":"charco","set":"decoracion","mask":-1},
+    {"index":6,"col":6,"row":0,"name":"gotas","set":"decoracion","mask":-1},
+    {"index":7,"col":7,"row":0,"name":"musgo_techo","set":"decoracion","mask":-1},
+    {"index":8,"col":0,"row":1,"name":"musgo_borde_der","set":"decoracion","mask":-1},
+    {"index":9,"col":1,"row":1,"name":"musgo_borde_izq","set":"decoracion","mask":-1},
+    {"index":10,"col":2,"row":1,"name":"raiz_suelta","set":"raiz","mask":-1},
+    {"index":11,"col":3,"row":1,"name":"raiz_arriba","set":"raiz","mask":-1},
+    {"index":12,"col":4,"row":1,"name":"raiz_medio","set":"raiz","mask":-1},
+    {"index":13,"col":5,"row":1,"name":"raiz_abajo","set":"raiz","mask":-1}
+  ],
+  "sets": [
+    {"name":"raiz","kind":"column","collider":"None","fullVariants":[],"single":"raiz_suelta","start":"raiz_arriba","mid":"raiz_medio","end":"raiz_abajo"}
+  ]
+}
