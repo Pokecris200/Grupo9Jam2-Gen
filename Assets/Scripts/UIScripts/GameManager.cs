@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Intro"); // Intro cinematic, then level 1
     }
 
     public void QuitGame()

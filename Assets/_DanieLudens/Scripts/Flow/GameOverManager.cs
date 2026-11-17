@@ -67,6 +67,6 @@ public class GameOverManager : MonoBehaviour
     // Go back to the main menu (button)
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene(0); // Load the menu scene
+        SceneManager.LoadScene("Main Menu Cristian"); // Load the menu scene by name (the title screen is scene 0)
     }
 }
